@@ -1,4 +1,4 @@
-# reduxToolKitPractice
+# ReduxToolKitPractice
 This a repository to store my redux Toolkit projects to learn how to utilize redux Toolkit using react.
 
 A guide that I am following for most of these examples is listed below. 
