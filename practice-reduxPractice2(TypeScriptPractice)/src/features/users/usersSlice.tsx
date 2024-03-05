@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
-import { sub } from "date-fns";
 
 type initialStateType = {
     id:string,
