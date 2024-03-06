@@ -3,17 +3,17 @@ import axios from "axios";
 const USERS_URL = 'https://jsonplaceholder.typicode.com/users';
 
 const initialState = [
-    // { id: '0', name: 'Dude Lebowski' },
-    // { id: '1', name: 'Neil Young' },
-    // { id: '2', name: 'Dave Gray' }
 ]
 
 export const fetchUsers = createAsyncThunk('users/fetchUsers', async ()=> {
     try{
-        const response = await axios.get(USERS_URL);
-    
-        console.log(response)
-        return [...response.data];
+        const response = await axios.get(USERS_URL).catch((x)=>{
+            throw new Error("Api had issues",x);
+        });
+        console.log(response.data);
+        return [...response.data.map(x=> {
+            return {id: x.id, name: x.name}
+        })];
     } catch (err) {
         return err.message;
     } 

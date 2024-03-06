@@ -1,31 +1,57 @@
+// import our custom selector hook
 import { useAppDispatch, useAppSelector } from "../../app/hook";
-import React from 'react'
-import { selectAllPosts } from "./postSlice";
-import PostAuthor from "./PostAuthor";
-import TimeAgo from "./TimeAgo";
-import ReactionButtons from "./ReactionButtons";
+import React from "react";
+// import our selectallPost function
+import { selectAllPosts, getPostsStatus, getPostsError, fetchPosts, initialPostStateType } from "./postSlice";
 
-const PostList:React.FC = () => {
+import PostsExcerpt from "./PostsExcerpt";
+
+// this is our post list component
+function PostList() {
+    const dispatch = useAppDispatch();
+
+    // load our posts from our state manager
     const posts = useAppSelector(selectAllPosts);
+    const postsStatus = useAppSelector(getPostsStatus);
+    const error = useAppSelector(getPostsError);
+
+    console.log(posts);
+    console.log(postsStatus);
+    console.log(error);
+
+    // when our page loads if our status is idle fetch our posts
+    React.useEffect(()=> {
+        if (postsStatus === 'idle') {
+            dispatch(fetchPosts());
+        }
+    },[postsStatus,dispatch])
     
-    const renderedPosts:JSX.Element[] = posts.map((post) => (
-        <article key={post.id}>
-            <h3>{post.title}</h3>
-            <p>{post.content.substring(0,100)}</p>
-            <p className="postCredit">
-                <PostAuthor  userId={post.userId}/>
-                <TimeAgo timestamp={post.date}/>
-            </p>
-            <ReactionButtons post={post} />
-        </article>
-    ))
+    // user content to keep track our if we are fetching data or if we have our data
+    let content;
+    switch(postsStatus){
+        case 'failed' :
+            content = <p>{error}</p>;
+            break;
+            // if we have our data loop through the state and display each instance in a component
+        case 'succeeded' :
+            const orderedPosts = posts.slice().sort((a,b)=> b.date.localeCompare(a.date));
+            content = orderedPosts.map((post:initialPostStateType) => <PostsExcerpt key={post.id} posts={post} />)
+            break;
+        default: 
+        // otherwise just display a loading message
+        content = <p>"Loading..."</p>
+            break;
+
+    }
 
   return (
+    // display our content
     <section>
         <h2>Posts</h2>
-        {renderedPosts}
+        {/* render our posts */}
+        {content}
     </section>
   )
 }
 
-export default PostList
+export default PostList;
