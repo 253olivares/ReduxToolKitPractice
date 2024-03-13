@@ -68,7 +68,7 @@ const AddPostForm = () => {
       {/* title */}
       <h2>Add a New Post</h2>
       {/* form */}
-      <form>
+      <form onSubmit={e=> e.preventDefault()}>
         <label htmlFor="postTitle">Post Title:</label>
         <input 
         type="text" 
@@ -77,6 +77,7 @@ const AddPostForm = () => {
         value={title}
         //on change updates title state
         onChange={onTitleChanged}
+        
         />
 
         <label htmlFor="postAuthor">Author:</label>

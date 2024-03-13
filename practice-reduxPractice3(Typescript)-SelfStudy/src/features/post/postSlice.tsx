@@ -5,7 +5,7 @@ import { createSlice,PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store"; 
 import { sub } from "date-fns";
 import axios, { CancelTokenSource } from "axios";
-const POSTS_URL = 'https://jsonplaceholder.typicode.com/posts';
+const POSTS_URL = 'https://jsonplaceholder.typicode.com/posts?_start=0&_limit=10';
 
 // this is our state slice
 // extends our type for our api request

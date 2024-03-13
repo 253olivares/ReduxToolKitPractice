@@ -15,9 +15,9 @@ function PostList() {
     const postsStatus = useAppSelector(getPostsStatus);
     const error = useAppSelector(getPostsError);
 
-    console.log(posts);
-    console.log(postsStatus);
-    console.log(error);
+    console.log("Post List Posts Var:",posts);
+    console.log("Post List Post status Var:",postsStatus);
+    console.log("Post List Error var:", error);
 
     // when our page loads if our status is idle fetch our posts
     React.useEffect(()=> {
