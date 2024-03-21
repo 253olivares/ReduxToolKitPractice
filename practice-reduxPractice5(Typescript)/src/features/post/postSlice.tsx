@@ -15,6 +15,8 @@ import axios, { CancelTokenSource } from "axios";
 const POSTS_URL_PAGNATED = 'https://jsonplaceholder.typicode.com/posts?_start=0&_limit=10';
 const POSTS_URL = 'https://jsonplaceholder.typicode.com/posts';
 
+// adapter that will create our entities and set our ids to be the same as our post.id
+// sort comparer will organize the posts by date
 const postsAdapter = createEntityAdapter({
     selectId: (post: initialPostStateType) => post.id,
     sortComparer: (a,b) => b.date.localeCompare(a.date)
@@ -261,6 +263,9 @@ const postSlice = createSlice({
 // selectors to call our states in the components
 // export const selectAllPosts = (state: RootState) => state.posts.posts;
 
+// Note: https://redux-toolkit.js.org/api/createEntityAdapter
+
+// change name of our selects that come preinstalled with reduc getSelector
 export const {
     selectAll: selectAllPosts,
     selectById: selectPostById,
