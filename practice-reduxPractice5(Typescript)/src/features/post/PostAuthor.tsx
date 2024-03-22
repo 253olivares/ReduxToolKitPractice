@@ -12,7 +12,7 @@ const PostAuthor = ({userId}: {userId:number}) => {
   return (
     // we check to see if our author var id filled if it is then we display the name our find returned
     // otherwise we display unknown author
-    <span>by {author ? author.name : 'Unknown author'}</span>
+    <span className="font-[500]">by {author ? author.name : 'Unknown author'}</span>
   )
 }
 

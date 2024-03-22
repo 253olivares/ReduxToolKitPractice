@@ -27,7 +27,7 @@ const EditPostForm = () => {
   if(!post) {
     return (
       <section>
-        <h2>Post not found!</h2>
+        <h2 className='font-bold text-center mt-[6rem] text-2xl'>Post not found!</h2>
       </section>
     )
   }
@@ -91,26 +91,30 @@ const EditPostForm = () => {
 
   return (
     <section>
-      <h2>Edit Post</h2>
-      <form onSubmit={e => e.preventDefault()}>
-        <label htmlFor="postTitle">Post Title:</label>
+      <h2 className='font-bold text-3xl'>Edit Post</h2>
+      <form onSubmit={e => e.preventDefault()} className='w-full flex flex-col p-10 justify-center mb-8'>
+        <label htmlFor="postTitle" className='font-semibold text-xl'>Post Title:</label>
         <input 
         type="text" 
         id='postTitle'
         name='postTitle'
+        className='block bg-slate-200 my-6 py-2 px-4 text-lg rounded-lg focus:bg-slate-50 focus:outline focus:outline-blue-400 focus:outline-4'
         value={title}
         onChange={e=>setTitle(e.target.value)}
         />
-      </form>
-      <label htmlFor="postAuthor">Author:</label>
-      <select id="postAuthor" value={userId} onChange={e=> setUserId(Number(e.target.value))}>
+      <label htmlFor="postAuthor" className='font-semibold text-xl'>Author:</label>
+      <select id="postAuthor" 
+                className='block bg-slate-200 my-6 py-2 px-4 text-lg rounded-lg border-r-[20px] border-transparent px-4outline outline-neutral-700 focus:bg-slate-50 focus:outline focus:outline-blue-400 focus:outline-4 '
+                value={userId} onChange={e=> setUserId(Number(e.target.value))}>
         <option value={0}></option>
         {usersOptions}
       </select>
-      <label htmlFor="postContent">Content:</label>
+      <label htmlFor="postContent" className='font-semibold text-xl'>Content:</label>
       <textarea name="postContent" 
       id="postContent"
       value={content}
+      rows={4}
+      className='block bg-slate-200 my-6 py-2 px-4 text-lg rounded-lg resize-none focus:bg-slate-50 focus:outline focus:outline-blue-400 focus:outline-4'
       onChange={e=> setContent(e.target.value)} 
       />
       <button
@@ -119,15 +123,18 @@ const EditPostForm = () => {
         // we disable our button when are cansave is false
         // otherwise when its true we allow the button to be functional
         disabled={!canSave}
+        className='w-[300px] mx-auto text-lg mt-8 py-3 rounded-md text-slate-800 font-bold bg-slate-300 disabled:text-slate-300 disabled:bg-slate-200 hover:bg-blue-400 hover:text-white'
       >
         Save Post
       </button>
       <button
+      className='w-[300px] mx-auto text-lg mt-8 py-3 rounded-md text-white font-bold bg-red-400 hover:bg-red-700'
         type='button'
         onClick={onDeletePostClicked}
       >
         Delete Post
       </button>
+      </form>
     </section>
   )
 }

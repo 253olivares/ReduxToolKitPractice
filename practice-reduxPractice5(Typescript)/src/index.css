@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Palanquin:wght@100;200;300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Palanquin:wght@100;200;300;400;500;600;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,15 +9,85 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
-html {
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  background: #333;
-  color: whitesmoke;
+@layer components {
+  html {
+    @apply font-mono;
+    -ms-overflow-style: none;
+    scrollbar-width:none;
+  }
+  html::-webkit-scrollbar {
+    display: none;
+  }
+  .App{
+    @apply relative;
+  }
+  section {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+  .loading {
+    @apply m-auto text-center text-3xl font-semibold pt-20
+  }
+  .card {
+    @apply w-[60%] min-w-[28.125rem] max-w-[37.5rem] mx-auto mt-8 my-10 px-6 py-8 bg-white shadow-xl ring-1 ring-slate-900/5 rounded-xl
+  }
+  .card-solo {
+    @apply w-[80%] min-w-[28.125rem] max-w-[50rem] mx-auto mt-8 my-10 px-10 py-14 bg-white shadow-xl ring-1 ring-slate-900/5 rounded-xl
+
+  }
+  .postCredit {
+    @apply my-6 flex space-x-4 items-center
+  }
+  .postCredit-solo {
+    @apply my-7 mb-5 flex space-x-6 items-center
+  }
+  .postCredit_span {
+    @apply p-2 rounded font-semibold bg-slate-100 text-slate-600 hover:text-white hover:bg-blue-400 transition ease-in-out duration-[.8s]
+  }
+  
+  .buttonHolder {
+    @apply flex space-x-4 text-base mt-4 mx-3
+  }
+  .reactionButton {
+    @apply p-1 px-2 hover:bg-slate-300 rounded active:bg-blue-400 active:duration-0
+  }
 }
 
-body {
+@layer utilities {
+  .padding {
+    @apply sm:px-16 px-8 sm:py-24 py-12;
+  }
+  .padding-x {
+    @apply sm:px-16 px-8;
+  }
+
+  .padding-y {
+    @apply sm:py-24 py-12;
+  }
+
+  .padding-l {
+    @apply sm:pl-16 pl-8;
+  }
+
+  .padding-r {
+    @apply sm:pr-16 pr-8;
+  }
+  .padding-t {
+    @apply sm:pt-24 pt-12;
+  }
+  .padding-b {
+    @apply sm:pb-24 pb-12;
+  }
+  .info-text {
+    @apply font-montserrat text-slate-gray text-lg leading-7
+  }
+}
+
+
+/* body {
   min-height: 100vh;
   font-size: 1.5rem;
   padding: 0 10% 10%;
@@ -70,4 +143,4 @@ form {
   border: none;
   color: whitesmoke;
   font-size: 1rem;
-}
+} */

@@ -48,14 +48,14 @@ function PostList() {
             break;
         default: 
         // otherwise just display a loading message
-        content = <p>"Loading..."</p>
+        content = <p className="loading">"Loading..."</p>
             break;
 
     }
 
   return (
     // display our content
-    <section>
+    <section className="mb-12">
         {/* <h2>Posts</h2> */}
         {/* render our posts */}
         {content}

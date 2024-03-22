@@ -16,7 +16,7 @@ const reactionEmoji = {
 
 // our reaction button component
 // get our post and bind it to our post state interface
-const ReactionButtons = ({post}:{post:initialPostStateType}) => {
+const ReactionButtons = ({post, cl, cln}:{post:initialPostStateType, cl:string,cln:string}) => {
   // call our dispatcher
     const dispatch = useDispatch();
     // console.log(post);
@@ -29,19 +29,19 @@ const ReactionButtons = ({post}:{post:initialPostStateType}) => {
             <button
             key={name}
             type="button"
-            className="reactionButton"
+            className={cln}
             // Pass postId so we know which post is receiving the reaction and the name of the reaction its recieving
             onClick={()=> dispatch(reactionAdded({postId: post.id, reaction: name}))} 
             >
               {/* render our empji and count of its reaction from our post */}
-                 {emoji} {post.reactions[name]};
+                 {emoji} {post.reactions[name]}
             </button>
         )
     })
 
   return (
     // render our array of jsx elements
-    <div>{reactionButtons}</div>
+    <div className={cl}>{reactionButtons}</div>
   )
 }
 

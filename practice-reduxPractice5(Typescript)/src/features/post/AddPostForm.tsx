@@ -80,24 +80,26 @@ const AddPostForm = () => {
     // return a section
     <section>
       {/* title */}
-      <h2>Add a New Post</h2>
+      <h2 className='font-bold text-3xl'>Add a New Post</h2>
       {/* form */}
-      <form onSubmit={e=> e.preventDefault()}>
-        <label htmlFor="postTitle">Post Title:</label>
+      <form onSubmit={e=> e.preventDefault()} className='w-full flex flex-col p-10 justify-center'>
+        <label htmlFor="postTitle" className='font-semibold text-xl'>Post Title:</label>
         <input 
         type="text" 
         id='postTitle'
         name='postTitle'
+        className='block bg-slate-200 my-6 py-2 px-4 text-lg rounded-lg focus:bg-slate-50 focus:outline focus:outline-blue-400 focus:outline-4'
         value={title}
         //on change updates title state
         onChange={onTitleChanged}
         
         />
 
-        <label htmlFor="postAuthor">Author:</label>
+        <label htmlFor="postAuthor" className='font-semibold text-xl'>Author:</label>
         <select 
         value={userId} 
         id="postAuthor"
+        className='block bg-slate-200 my-6 py-2 px-4 text-lg rounded-lg border-r-[20px] border-transparent px-4outline outline-neutral-700 focus:bg-slate-50 focus:outline focus:outline-blue-400 focus:outline-4 '
         // onchange changes author state
         onChange={onAuthorChanged}
         >
@@ -105,17 +107,19 @@ const AddPostForm = () => {
           {usersOptions}
         </select>
 
-        <label htmlFor="postContent">Content:</label>
+        <label htmlFor="postContent" className='font-semibold text-xl'>Content:</label>
         <textarea 
         name="postContent" 
         id="postContent" 
         value={body}
+         className='block bg-slate-200 my-6 py-2 px-4 text-lg rounded-lg resize-none focus:bg-slate-50 focus:outline focus:outline-blue-400 focus:outline-4'
         // oncontent change changes content state
+        rows={4}
         onChange={ onContentChange}
         />
 
         {/* runs our save posts click when our button is enables from can save */}
-        <button type='button' onClick={onSavePostClicked} disabled={!canSave} >Save Post</button>
+        <button type='button' onClick={onSavePostClicked} disabled={!canSave} className='w-[300px] mx-auto text-lg mt-8 py-3 rounded-md text-slate-800 font-bold bg-slate-300 disabled:text-slate-300 disabled:bg-slate-200 hover:bg-blue-400 hover:text-white' >Save Post</button>
       </form>
     </section>
   )

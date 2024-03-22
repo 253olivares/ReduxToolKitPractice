@@ -22,7 +22,7 @@ const TimeAgo = ({timestamp}: {timestamp:string}) => {
   return (
     // render our time ago depending on when the todo was created
     <span title='timestamp'>
-        &nbsp; <i>{timeAgo}</i>
+        &nbsp; <i className='text-slate-500'>{timeAgo}</i>
     </span>
   )
 }

@@ -35,28 +35,28 @@ const SinglePost = () => {
     // display a error message of post not found
     if(!post) {
         return(
-            <section>
-                <h2>Post not found!</h2>
+            <section >
+                <h2 className="text-center text-3xl font-bold mt-[6.25rem]">Post not found!</h2>
             </section>
         )
     }
 
     // otherwise we display our post
     return (
-        <article>
+        <article className="card-solo">
             {/* title */}
-            <h2>{post.title}</h2>
+            <h2 className='text-2xl font-semibold tracking-tight text-slate-900'>{post.title}</h2>
             {/* body */}
-            <p>{post.body}</p>
+            <p className='mt-8 text-xl text-slate-500 '>{post.body}</p>
             {/* our author and time ago components where we are passing our userId and Date */}
-            <p className="postCredit">
+            <p className="postCredit-solo">
                 {/* creating a link that allows the user to navigate to the edit page */}
-                <Link to={`/post/edit/${post.id}`}>Edit Post</Link>
+                <Link to={`/post/edit/${post.id}`}><span className='postCredit_span py-3 px-3 text-lg'>Edit Post</span></Link>
                 <PostAuthor userId={post.userId} />
                 <TimeAgo timestamp={post.date} />
             </p>
             {/* reaction button components where we are passing our whole post */}
-            <ReactionButtons post={post} />
+            <ReactionButtons post={post} cl={"buttonHolder space-x-5 text-lg"} cln={"reactionButton p-2"} />
         </article>
     )
 }
