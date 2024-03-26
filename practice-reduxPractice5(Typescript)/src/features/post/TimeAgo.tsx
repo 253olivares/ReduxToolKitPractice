@@ -1,6 +1,4 @@
-import {parseISO, formatDistanceToNow, formatDistance} from 'date-fns'
-
-import React from 'react'
+import {parseISO, formatDistanceToNow} from 'date-fns'
 
 // time ago component that takes our time stamp
 const TimeAgo = ({timestamp}: {timestamp:string}) => {
