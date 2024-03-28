@@ -183,6 +183,8 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
                 body: {reactions}
             }),
             // on query started handler takes in our params and gets our dispatch from redux and query fulfilled
+            // function within is executed once the query begins
+            //queryfulfilled is what checks to see if our query orks
             async onQueryStarted({postId, reactions}, {dispatch,queryFulfilled}){
                 // we create a const that is our patch result that becomes a optimistic update
                 const patchResult = dispatch(
