@@ -1,11 +1,11 @@
 // add Post form
 import React from 'react'
-// call our custom hooks
-import { useAppSelector} from '../../app/hook';
+
 
 // call our post add function that will run when the user submits our form
 // call our users so that we can select a user our todo is created under
-import { selectAllUsers } from '../users/usersSlice';
+
+import { useGetUsersQuery } from '../users/userSliceAPI';
 import { useNavigate } from 'react-router-dom';
 import { useAddNewPostMutation } from './postSlice';
 
@@ -36,7 +36,7 @@ const AddPostForm = () => {
   const navigate = useNavigate();
 
   // call all our users
-  const users = useAppSelector(selectAllUsers);
+  const {data:users} = useGetUsersQuery();
 
   const canSave = [title,body,userId].every(Boolean) && !isLoading; 
 

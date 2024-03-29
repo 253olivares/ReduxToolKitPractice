@@ -1,12 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { apiSlice } from '../features/api/apiSlice'
-import userReducer from '../features/users/usersSlice'
 
 // create our store and import our slices and set them in our state store
 export const store = configureStore({
     reducer:{
-        [apiSlice.reducerPath]:apiSlice.reducer,
-        users:userReducer,
+        [apiSlice.reducerPath]:apiSlice.reducer
     },
     // middleware created using rtk query
     middleware: getDefaultMiddleware => 

@@ -2,9 +2,9 @@ import React from 'react'
 import { useAppSelector } from '../../app/hook'
 import { selectPostById} from './postSlice'
 import { useParams, useNavigate } from 'react-router-dom'
-
-import { selectAllUsers } from '../users/usersSlice'
 import { useUpdatePostMutation, useDeletePostMutation } from './postSlice'
+import { useGetUsersQuery } from '../users/userSliceAPI'
+import { user } from '../users/userSliceAPI'
 
 import { RootState } from '../../app/store'
 
@@ -30,8 +30,8 @@ const EditPostForm = () => {
   const [deletePost] = useDeletePostMutation();
 
   const post = useAppSelector((state: RootState)=> selectPostById(state,Number(postId)));
+  const {data:users} = useGetUsersQuery();
 
-  const users = useAppSelector(selectAllUsers);
   // we will exist if there is not post to be found let it if a user just types in an id in th url for a post that doesn't exist
   if(!post) {
     return (
@@ -49,7 +49,7 @@ const EditPostForm = () => {
   const canSave: boolean = [title,content,userId].every(Boolean) && !isLoading;
 
 
-  const usersOptions = users.map(user => (
+  const usersOptions = users.map((user:user) => (
     <option
       key={user.id}
       value={user.id}

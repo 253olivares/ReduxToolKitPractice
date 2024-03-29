@@ -54,10 +54,10 @@ export const extendedUserApiSlice = apiSlice.injectEndpoints({
                 return result.data
                 ? { data: result.data as user[] }
                 : { error: result.error as FetchBaseQueryError }
-            }
+            },
         }),
-        getUserById:builder.query<user,number>({  
-            query: (id) => `/users/${id}`,
+        getUserById:builder.query<user,number>({
+            query: (id) => `/users/${id}`
         })
 
     })
