@@ -8,20 +8,21 @@ import NotFound from "./components/NotFound.tsx"
 import UserList from "./features/users/UserList.tsx"
 import UserPage from "./features/users/UserPage.tsx"
 import {store} from './app/store.tsx'
-import { fetchUsers } from "./features/users/usersSlice"
 import { Routes, Route } from "react-router-dom"
 import { extendedApiSlice } from "./features/post/postSlice.tsx"
+import { extendedUserApiSlice } from "./features/users/userSliceAPI.ts"
 import EditPostForm from "./features/post/EditPostForm.tsx"
-
 // our main app component that houses our entire project
 function App():JSX.Element {
 
   // this is our store dispatch that fetches our users
   // when the component unmounts we abort our request
   React.useEffect(()=> {
-    store.dispatch(extendedApiSlice.endpoints.getPosts.initiate());
-    const promise = store.dispatch(fetchUsers());
+
+    const promise2 = store.dispatch(extendedApiSlice.endpoints.getPosts.initiate());
+    const promise = store.dispatch(extendedUserApiSlice.endpoints.getUsers.initiate());
     return () => {
+      promise2.abort();
       promise.abort()
     }
   },[])

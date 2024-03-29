@@ -60,6 +60,8 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
     endpoints:builder=> ({
         getPosts: builder.query<EntityState<initialPostStateType, number>, void>({
             // alternative to look into called query fn
+            // documentation for query fn alternative 
+            // https://redux-toolkit.js.org/rtk-query/api/createApi#queryfn
             query: () => '/posts',
             // transformResponse lets us change our data.
             // data that is pulled in will run through our functio first
@@ -148,6 +150,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
             ]
         }),
         updatePost: builder.mutation({
+            // query taking in our args
             query: (initialPost: {id: number, title:string, body: string, userId:number, reactions: Record<string, number>})=> ({
                 url: `/posts/${initialPost.id}`,
                 method: 'PUT',
@@ -157,6 +160,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
                     date: new Date().toISOString()
                 }
             }),
+            // tags let the app mark each cache data so that they can be individually updated later
             invalidatesTags: (arg) => {
                 // returns our data from putting
                 console.log(arg);
@@ -177,7 +181,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
         }),
         addReaction: builder.mutation({
             query: ({postId,reactions}: {postId:number, reactions:Record<string, number>}) => ({
-                url: `posts/${postId}`,
+                url: `/posts/${postId}`,
                 method: 'PATCH',
                 // we want to add a user check to make sure people can only leave on reaction
                 body: {reactions}
@@ -254,9 +258,6 @@ export const  {
     selectById: selectPostById,
     selectIds: selectPostIds
 } = postsAdapter.getSelectors((state:RootState) => {
-
-    console.log("postSlice: State - ",state);
-
     // if data is null that just pass our initial state which has the id and entity structure
 
     return selectPostsData(state) ?? initialState

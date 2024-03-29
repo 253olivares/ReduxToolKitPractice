@@ -1,14 +1,14 @@
-import { useAppSelector } from "../../app/hook"
-// our select queries are still being used to get our users
-import { selectUserById } from "./usersSlice"
 import { Link,useParams } from "react-router-dom"
 import { useGetPostsByUserIdQuery } from "../post/postSlice"
+import { useGetUserByIdQuery } from "./userSliceAPI"
 
 const UserPage = () => {
     const {userId}  = useParams<{userId:string}>();
 
-    const user = useAppSelector(state => selectUserById(state, Number(userId)))
+    console.log(userId);
 
+    const {data:user} = useGetUserByIdQuery(Number(userId));
+    console.log("user:",user);
     const {
       data: postsForUser,
       isLoading,

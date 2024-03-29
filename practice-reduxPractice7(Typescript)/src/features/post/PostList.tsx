@@ -6,6 +6,7 @@ import { selectPostIds } from "./postSlice";
 import { useGetPostsQuery } from "./postSlice";
 
 import PostsExcerpt from "./PostsExcerpt";
+import { useGetUsersQuery } from "../users/userSliceAPI";
 
 // this is our post list component
 function PostList() {
@@ -17,11 +18,12 @@ function PostList() {
         error
     } = useGetPostsQuery();
  
+    useGetUsersQuery();
+
     // this grabs our index state which should be idx number[]
     // this number is what is mapped through and passed into our posts excerpy
     const orderedPostsByIds = useAppSelector(selectPostIds)
 
-    console.log("Post List Error var:", error);
     
     // user content to keep track our if we are fetching data or if we have our data
     let content;
