@@ -2,7 +2,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { CancelTokenSource } from "axios";
 import { RootState } from "../../app/store";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 const USERS_URL = 'https://jsonplaceholder.typicode.com/users';
 
 // setting our type script requirments

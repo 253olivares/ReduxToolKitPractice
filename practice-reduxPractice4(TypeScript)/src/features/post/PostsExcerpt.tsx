@@ -1,4 +1,3 @@
-import React from 'react'
 import { initialPostStateType } from './postSlice'
 import PostAuthor from './PostAuthor'
 import TimeAgo from './TimeAgo'

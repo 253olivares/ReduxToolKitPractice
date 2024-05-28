@@ -1,12 +1,6 @@
-import { EntityState } from "@reduxjs/toolkit";
-
-import { createSelector, createEntityAdapter } from "@reduxjs/toolkit";
 
 import { apiSlice } from "../api/apiSlice";
 
-import { sub } from "date-fns";
-
-import { RootState } from "../../app/store";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 
 export type user = {
@@ -32,14 +26,8 @@ export type user = {
     }
 }
 
-const initialState:user[] = [
 
-];
 
-type userReturn = {
-    id:number,
-    name:string
-}
 
 export const extendedUserApiSlice = apiSlice.injectEndpoints({
     endpoints: builder => ({
