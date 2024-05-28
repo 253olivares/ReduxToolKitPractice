@@ -2,7 +2,7 @@
 import { useAppDispatch, useAppSelector } from "../../app/hook";
 import React from "react";
 // import our selectallPost function
-import {getPostsStatus, getPostsError, fetchPosts, selectPostIds } from "./postSlice";
+import {getPostsStatus, getPostsError, fetchPosts, selectPostIds, selectAllPosts } from "./postSlice";
 
 import PostsExcerpt from "./PostsExcerpt";
 

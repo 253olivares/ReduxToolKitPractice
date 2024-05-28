@@ -12,10 +12,10 @@ import { useGetUsersQuery } from "../users/userSliceAPI";
 function PostList() {
 
     const {
-        isLoading,
-        isSuccess,
-        isError,
-        error
+       isLoading,
+       isError,
+       isSuccess,
+       error
     } = useGetPostsQuery();
  
     useGetUsersQuery();

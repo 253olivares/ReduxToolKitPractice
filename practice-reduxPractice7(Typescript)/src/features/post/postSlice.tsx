@@ -52,12 +52,14 @@ const postsAdapter = createEntityAdapter({
 
 
 // this creates an initial state which is the id and entities format
-const initialState = postsAdapter.getInitialState()
+const initialState = postsAdapter.getInitialState({
+    count:0
+})
 
 console.log("initialState:",initialState);
 
 export const extendedApiSlice = apiSlice.injectEndpoints({
-    endpoints:builder=> ({
+    endpoints: builder => ({
         getPosts: builder.query<EntityState<initialPostStateType, number>, void>({
             // alternative to look into called query fn
             // documentation for query fn alternative 

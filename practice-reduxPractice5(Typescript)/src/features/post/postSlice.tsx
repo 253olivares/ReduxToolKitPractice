@@ -291,7 +291,7 @@ export const getCounter = (state:RootState) => state.posts.count;
 // create selector sets 2 dependencies which will be our select all posts and our function that returns user ID
 // then with post properties we filter and return our posts lists that match our userId
 export const selectPostByUser = createSelector(
-    [selectAllPosts, (_, userId:number)=> userId],
+    [selectAllPosts, (_, userId:number) => userId],
     (posts, userId)=> posts.filter(post => post.userId === userId)
 )
 

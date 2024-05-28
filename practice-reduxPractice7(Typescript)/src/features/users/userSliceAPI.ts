@@ -42,7 +42,7 @@ type userReturn = {
 }
 
 export const extendedUserApiSlice = apiSlice.injectEndpoints({
-    endpoints:builder => ({
+    endpoints: builder => ({
         getUsers: builder.query<any, void>({
             async queryFn(_arg, _queryApi, _extraOptions, fetchUsers) {
 
@@ -55,9 +55,15 @@ export const extendedUserApiSlice = apiSlice.injectEndpoints({
                 ? { data: result.data as user[] }
                 : { error: result.error as FetchBaseQueryError }
             },
+            providesTags: (result) => 
+            result? [
+                {type:"User", id:"LIST"},
+                ...result.id.map((id:string)=> ({type:"User" as const,id}))
+            ]: [{type:'User', id:"LIST"}]
         }),
         getUserById:builder.query<user,number>({
-            query: (id) => `/users/${id}`
+            query: (id) => `/users/${id}`,
+            providesTags: (result) => [{type:"User", id:result!.id}]
         })
 
     })
